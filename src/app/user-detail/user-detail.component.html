@@ -1,0 +1,12 @@
+<div class="container">
+<h2>User Details</h2>
+
+<div *ngIf="user">
+  <h3>{{ user.name }}</h3>
+  <h3>{{ user.company_name }}</h3>
+  <h3>{{ user.user_desc }}</h3>
+  <button (click)="addToSortedList(user)">Set Shortlisted</button>
+</div>
+<button routerLink="/sortedUsers"> Go To List</button>
+</div>
+

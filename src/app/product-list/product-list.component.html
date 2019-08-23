@@ -1,0 +1,27 @@
+<div class="container">
+	<h2>{{title}}</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Compnay Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Info</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as userId" >
+      <th scope="row">{{ user.name }}</th>
+      <td>{{ user.company_name }}</td>
+      <td>{{user.user_desc}}</td>
+      <td><app-user-alert [product]="user" (notify)="onNotify()"></app-user-alert></td>
+      <td>  <a [title]="user.name + ' details'" [routerLink]="['/user', userId]">
+      {{ user.name }}
+    </a> </td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
