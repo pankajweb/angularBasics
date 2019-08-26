@@ -12,12 +12,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users; index as userId" >
+    <tr *ngFor="let user of users; index as userID">
       <th scope="row">{{ user.name }}</th>
       <td>{{ user.company_name }}</td>
       <td>{{user.user_desc}}</td>
       <td><app-user-alert [product]="user" (notify)="onNotify()"></app-user-alert></td>
-      <td>  <a [title]="user.name + ' details'" [routerLink]="['/user', userId]">
+      <td>  <a [title]="user.name + ' details'" [routerLink]="['/user', userID]">
       {{ user.name }}
     </a> </td>
     </tr>

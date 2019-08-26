@@ -8,13 +8,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-
+selectedUsers;
+agentRole_By =[];
 
 user;
-
+target;
 users = [
 {
-id:'1',
 name:'Pankaj',
 company_name:"Wegile",
 user_desc:"Web developer",
@@ -42,10 +42,21 @@ user_desc:''
   }
 
    addToSortedList(user) {
-    window.alert('asdfadf');
-    this.userService.addToSelected(user);
-  }
+      this.target = this.userService.getSelectedUsers().find(checkUser=>checkUser.name==user.name)
+      if(this.target) {
+           window.alert("User Already Selected");
+         }
+      else{
+          this.userService.addToSelected(user);
+          window.alert("Selected Successfully!");
+         }
+        }
+
+         addToUserRole(user) {
+
+         this.userService.setRole(user);
+         
 
 
-
+      }
 }

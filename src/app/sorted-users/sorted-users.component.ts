@@ -8,14 +8,28 @@ import { UserService } from '../user.service';
   styleUrls: ['./sorted-users.component.css']
 })
 export class SortedUsersComponent implements OnInit {
+	title= "Selected Users";
 selectedUsers;
+selectedUsersRole=[];
+
   constructor(private userService: UserService) { 
 	this.selectedUsers = this.userService.getSelectedUsers();
-console.log(this.selectedUsers);
+
+
+this.selectedUsersRole.push(localStorage.getItem('stored_role'));
+console.log(this.selectedUsersRole);
   }
 
   ngOnInit() {
   
   }
+clearUser(){
+this.selectedUsers = this.userService.clearSelection();
+}
 
+onUserDeleted(index){ 
+	this.selectedUsers = this.userService.getSelectedUsers();
+    this.selectedUsers.splice(index, 1); 
+    console.log(this.selectedUsers);
+}
 }

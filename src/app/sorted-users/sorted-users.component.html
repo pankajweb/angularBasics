@@ -1,6 +1,27 @@
-<h3>Selected Users</h3>
-
-<div class="cart-item" *ngFor="let selectedUser of selectedUsers">
-  <span>{{ selectedUser.name }}</span>
-  <span>{{ selectedUser.desc  }}</span>
+   <div class="container"> 
+   	<h3>{{title}}</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Compnay Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let selectedUser of selectedUsers; index as id" >
+      <th scope="row">{{ selectedUser.name }}</th>
+      <td>{{ selectedUser.company_name }}</td>
+      <td>{{selectedUser.user_desc}}</td>
+      <td><button class="btn btn-danger" (click)="onUserDeleted(id)"> Delete </button> </td>
+    </tr>
+  </tbody>
+</table>
+	<div class="row">
+			<div class="col-sm-2"><button class="btn btn-danger" (click)="clearUser()">Clear</button></div>
+			<div class="col-sm-2"><button class="btn btn-primary" routerLink="/"> Go To List</button>
+		</div>
+	</div>
 </div>
+

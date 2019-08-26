@@ -30,6 +30,7 @@ user_desc:''
 
 
   ngOnInit() {
+    console.log(JSON.parse(localStorage.getItem('cart')));
   }
 
   viewDetail(event){

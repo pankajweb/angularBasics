@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   selectedUsers = [];
+  userRoles = [];
 
   constructor(
     private http: HttpClient
@@ -20,7 +21,23 @@ export class UserService {
   }
 
   getSelectedUsers() {
-
     return this.selectedUsers;
+  }
+
+  setRole(user) {
+
+    this.userRoles.push(user);
+    localStorage.setItem('stored_role', this.userRoles)
+
+  }
+  getRole() {
+    return this.userRoles;
+  }
+
+
+  clearSelection(){
+  this.selectedUsers=[];
+return this.selectedUsers;
+
   }
 }
