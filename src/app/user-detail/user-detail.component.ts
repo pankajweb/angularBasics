@@ -41,22 +41,34 @@ user_desc:''
   });
   }
 
-   addToSortedList(user) {
-      this.target = this.userService.getSelectedUsers().find(checkUser=>checkUser.name==user.name)
-      if(this.target) {
-           window.alert("User Already Selected");
-         }
-      else{
-          this.userService.addToSelected(user);
-          window.alert("Selected Successfully!");
-         }
-        }
+  addToSortedList(user) {
+    this.target = this.userService.getSelectedUsers().find(checkUser=>checkUser.name==user.name)
+    if(this.target) {
+    window.alert("User Already Selected");
+    }
+    else{
+    this.userService.addToSelected(user);
+    window.alert("Selected Successfully!");
+    }
+  }
 
-         addToUserRole(user) {
+  addToUserRole(user) {
+    if(localStorage.getItem('products')){
+          this.target = JSON.parse(localStorage.getItem('products')).find(checkUser=>checkUser.name==user.name)
+    if(this.target) {
+    window.alert("User Already Selected");
+    }
+    else{
+    this.userService.setRole(user);
+    window.alert("Role Set Successfully!");
+    } 
+    } else {
+    this.userService.setRole(user);
+    window.alert("Role Set Successfully!");
 
-         this.userService.setRole(user);
-         
+      
+    }
 
-
-      }
+ 
+  }
 }

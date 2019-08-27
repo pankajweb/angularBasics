@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   selectedUsers = [];
-  userRoles = [];
+  userRoles:string = [];
 
   constructor(
     private http: HttpClient
@@ -26,8 +26,13 @@ export class UserService {
 
   setRole(user) {
 
-    this.userRoles.push(user);
-    localStorage.setItem('stored_role', this.userRoles)
+     let products = [];
+    if(localStorage.getItem('products')){
+        products = JSON.parse(localStorage.getItem('products'));
+    }
+    products.push(user);
+    localStorage.setItem('products', JSON.stringify(products));
+      
 
   }
   getRole() {

@@ -25,3 +25,33 @@
 	</div>
 </div>
 
+
+   <div class="container"> <br>
+    <h3>Agent Role Users <span *ngIf="totalAgentUser"> ( {{totalAgentUser }} )</span> (local storage example)</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Compnay Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agentUser of agentUsers; index as id" >
+      <th scope="row">{{ agentUser.name }}</th>
+      <td>{{ agentUser.company_name }}</td>
+      <td>{{agentUser.user_desc}}</td>
+      <td><button class="btn btn-danger" (click)="onUserRoleDeleted(id)"> Delete </button> </td>
+    </tr>
+  </tbody>
+</table>
+  <div class="row">
+      <div class="col-sm-2"><button class="btn btn-danger" (click)="clearUserRole()">Clear</button></div>
+      <div class="col-sm-2"><button class="btn btn-primary" routerLink="/"> Go To List</button>
+    </div>
+  </div>
+</div>
+
+
+
