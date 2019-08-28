@@ -9,19 +9,28 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { SortedUsersComponent } from './sorted-users/sorted-users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule }    from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     UserAlertComponent,
     UserDetailComponent,
-    SortedUsersComponent
+    SortedUsersComponent,
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
