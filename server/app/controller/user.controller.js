@@ -40,18 +40,18 @@ exports.login = (req, res) => {
 
 // Post a Customer
 exports.profile = (req, res) => {	
-	  User.findOne({
+
+  token       = req.headers.authorization.split(' ')[1];
+  var decoded = jwt.verify(token,'iloveNg1');
+
+  User.findOne({
     where: {
-      username: req.body.username,
-      password: req.body.password
+      id: decoded.data.id
     }
   })
     .then(user => {
       if (user) {
-        let token = jwt.sign({data: user}, 'iloveNg', {
-          expiresIn: 1440
-        })
-        res.json({ token: token })
+        res.json(user)
       } else {
         res.send('User does not exist')
       }
@@ -59,6 +59,7 @@ exports.profile = (req, res) => {
     .catch(err => {
       res.send('error: ' + err)
     })
+
 };
 
 

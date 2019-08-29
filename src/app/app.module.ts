@@ -13,6 +13,9 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './guard/auth.guard';
+import { GuestGuard } from './guard/guest.guard';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
     RouterModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuard,GuestGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

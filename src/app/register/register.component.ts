@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
+    	console.log(localStorage.getItem('currentUser'));
         this.registerForm = this.formBuilder.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],

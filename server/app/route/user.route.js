@@ -5,6 +5,6 @@ module.exports = function(app) {
     // Create a new Customer
     app.post('/api/register', users.register);
     app.post('/api/login', users.login);
-    app.post('/api/profile', users.profile);
+    app.get('/api/profile', users.profile);
  
 }

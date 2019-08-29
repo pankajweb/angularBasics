@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
 
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private userService: UserService,
+    ) {
+      
+    }
   ngOnInit() {
+  	   this.userService.profile().subscribe(
+      user => {
+        this.details = user
+      },
+      err => {
+        console.error(err)
+      } );
   }
+
 
 }
