@@ -74,7 +74,7 @@ return this.selectedUsers;
   }
   //user auth funtionality
   //register
-  register(user:User): Observable<User[]> {
+  register(user:User){
    return this.http.post('http://localhost:8080/api/register', user,httpOptions);
   }
 

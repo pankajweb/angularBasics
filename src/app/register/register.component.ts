@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    messgae:any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -44,9 +45,8 @@ export class RegisterComponent implements OnInit {
         this.loading = true;
         this.userService.register(this.registerForm.value)
             .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate(['/']);
+            .subscribe((data:any) => {
+                    this.messgae = data.message;
                 },
                 error => {
                     this.loading = false;

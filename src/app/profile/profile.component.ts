@@ -22,13 +22,13 @@ export class ProfileComponent implements OnInit {
       
     }
   ngOnInit() {
-  	   this.userService.profile().subscribe(
+  /*	   this.userService.profile().subscribe(
       user => {
         this.details = user
       },
       err => {
         console.error(err)
-      } );
+      } );*/
   }
 
 

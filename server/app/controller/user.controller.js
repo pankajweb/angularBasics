@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 const db = require('../config/db.config.js');
 const User = db.users;
 const jwt = require('jsonwebtoken')
@@ -6,6 +8,7 @@ const jwt = require('jsonwebtoken')
 
 // Post a Customer
 exports.register = (req, res) => {	
+  console.log("test");
 	// Save to MySQL database
 	let user = req.body;
 	User.create(user).then(result => {		
@@ -63,3 +66,11 @@ exports.profile = (req, res) => {
 };
 
 
+exports.delete = (req, res) => {
+  const id = req.params.userID;
+  User.destroy({
+    where: { id: id }
+  }).then(() => {
+    res.status(200).json({msg:'deleted successfully a user with id = ' + id});
+  });
+};
