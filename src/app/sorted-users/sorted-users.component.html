@@ -3,19 +3,42 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Compnay Name</th>
-      <th scope="col">Description</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let selectedUser of selectedUsers; index as id" >
-      <th scope="row">{{ selectedUser.name }}</th>
-      <td>{{ selectedUser.company_name }}</td>
-      <td>{{selectedUser.user_desc}}</td>
-      <td><button class="btn btn-danger" (click)="onUserDeleted(id)"> Delete </button> </td>
+    <tr *ngFor="let user of pagedItems; index as id" >
+      <th scope="row">{{ user.firstname }}</th>
+      <td>{{ user.lastname }}</td>
+      <td>{{user.username}}</td>
+      <td><button class="btn btn-danger" (click)="onUserDeleted(user.id)"> Delete </button >
+        <button class="btn btn-danger" (click)="onUserDeleted(user.id)"> Edit </button>
+      <button class="btn btn-danger" (click)="onUserDeleted(user.id)"> view </button> </td>
     </tr>
+
+       <!-- pager -->
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+
+            
   </tbody>
 </table>
 	<div class="row">

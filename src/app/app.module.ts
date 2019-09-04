@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './guard/auth.guard';
 import { GuestGuard } from './guard/guest.guard';
+import { JoblistComponent } from './joblist/joblist.component';
+import { CreateJobComponent } from './create-job/create-job.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { GuestGuard } from './guard/guest.guard';
     SortedUsersComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    JoblistComponent,
+    CreateJobComponent
   ],
   imports: [
     BrowserModule,

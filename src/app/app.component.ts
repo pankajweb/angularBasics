@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'ngBasic';
   constructor(public auth: UserService) {
 
+console.log()
 console.log(auth.getUserDetails());
 
   }

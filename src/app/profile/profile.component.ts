@@ -11,7 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+details;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -22,13 +22,13 @@ export class ProfileComponent implements OnInit {
       
     }
   ngOnInit() {
-  /*	   this.userService.profile().subscribe(
-      user => {
+  	   this.userService.profile().subscribe(
+      (user:any) => {
         this.details = user
       },
       err => {
         console.error(err)
-      } );*/
+      } );
   }
 
 

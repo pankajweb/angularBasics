@@ -1,0 +1,68 @@
+<div class="container"><h2>Create job</h2>
+<form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="job_title">Job Title</label>
+        <input type="text" formControlName="job_title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job_title.errors }" />
+        <div *ngIf="submitted && f.job_title.errors" class="invalid-feedback">
+            <div *ngIf="f.job_title.errors.required">job title is required</div>
+        </div>
+    </div>
+		<div class="form-group">
+			<label for="job_desc">Job Description</label>
+			<textarea formControlName="job_desc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job_desc.errors }"  ></textarea>
+			<div *ngIf="submitted && f.job_desc.errors" class="invalid-feedback">
+			<div *ngIf="f.job_desc.errors.required">Job Description is required</div>
+			</div>
+		</div>
+
+      <div class="form-group">
+        <label for="job_price">Price</label>
+        <input type="text" formControlName="job_price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job_price.errors }" />
+        <div *ngIf="submitted && f.job_price.errors" class="invalid-feedback">
+            <div *ngIf="f.job_price.errors.required">Price is required</div>
+        </div>
+    </div>
+
+
+     <div class="form-group">
+        <label for="password">Upload Profile Image</label>
+         <input type="file" formControlName="image" (change)="onFileChange($event)" [ngClass]="{ 'is-invalid': submitted && f.image.errors }"  />
+        
+          <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+			<div *ngIf="f.image.errors.required">Image is required</div>
+			</div>
+         </div>
+
+
+
+
+       <div class="form-group">
+        <label for="job_type">Job Type</label>
+         <select formControlName="job_type" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.job_type.errors }"  >
+            <option value="">Select Job Type</option>
+            <option [value]="fixed">Fixed</option>
+            <option [value]="hourly">Hourly</option>
+          </select>
+          <div *ngIf="submitted && f.job_type.errors" class="invalid-feedback">
+			<div *ngIf="f.job_type.errors.required">Job Type is required</div>
+			</div>
+
+      </div>
+
+       <div class="form-group">
+        <label for="job_desc">country</label>
+         <select formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" >
+            <option value="">Select country...</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+          </select>
+            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+			<div *ngIf="f.country.errors.required">Country is required</div>
+			</div>
+      </div>
+
+
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Post Job</button>
+    </div>
+</form>
+   </div>

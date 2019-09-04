@@ -3,6 +3,12 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json())
 
+app.use(express.static('public'));
+app.use('/user_upload', express.static(__dirname + '/user_upload'));
+
+
+
+
 const cors = require('cors')
 const corsOptions = {
   origin: 'http://localhost:4200',
@@ -13,7 +19,7 @@ app.use(cors(corsOptions))
 
 const db = require('./app/config/db.config.js');
 
-//require('./app/route/customer.route.js')(app);
+require('./app/route/job.route.js')(app);
 require('./app/route/user.route.js')(app);
  
 // Create a Server
