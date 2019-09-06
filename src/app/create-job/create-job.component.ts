@@ -19,7 +19,7 @@ countries = [
 ];
 
 
-	jonForm: FormGroup;
+	jobForm: FormGroup;
 	loading = false;
 	submitted = false;
 	messgae:any;
@@ -40,16 +40,34 @@ countries = [
             job_title: ['', Validators.required],
             job_desc: ['', Validators.required],
             job_price: ['', Validators.required],
-            job_type: ['', Validators.required],
-            image: ['', Validators.required],
-            country: ['', Validators.required]
+            file: ['', Validators.required],
+            job_type: [null, Validators.required],
+            country: [null, Validators.required]
         });
   }
+
+
+     public onFileChange(event) {
+           const reader = new FileReader();
+           if (event.target.files && event.target.files.length) {
+             this.fileName = event.target.files[0].name;
+             alert(this.fileName);
+             const [file] = event.target.files;
+             reader.readAsDataURL(file);
+            
+             reader.onload = () => {
+                  this.jobForm.patchValue({
+                 file: reader.result
+               });
+             };
+           }
+         }
 
       get f() { return this.jobForm.controls; }
 
 
    onSubmit() {
+
 
         this.submitted = true;
 
@@ -59,6 +77,16 @@ countries = [
         }
 
         this.loading = true;
+        this.userService.createJob(this.jobForm.value)
+            .pipe(first())
+            .subscribe((data:any) => {
+                    this.messgae = data.message;
+                   this.router.navigate(['/job-list']);
+
+                },
+                error => {
+                    this.loading = false;
+                });
       
     }
 

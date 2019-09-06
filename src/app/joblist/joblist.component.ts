@@ -11,16 +11,19 @@ import { UserService } from '../user.service';
 })
 export class JoblistComponent implements OnInit {
 joblist;
-
-  constructor(private userService: UserService) { 
-
-  }
+ show = 3;
+constructor(private userService: UserService) { }
 
   ngOnInit() {
-     this.userService.jobList().subscribe((response:any) => {
-           this.jobList = response;
-           console.log(this.jobList);
-           });
+this.userService.jobList().subscribe((response:any) => {
+   this.joblist = response;
+   console.log(this.joblist);
+   });
   }
+
+  increaseShow() {
+    this.show += 3; 
+  }
+
   }
 

@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JoblistComponent } from './joblist/joblist.component';
 import { CreateJobComponent } from './create-job/create-job.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 import { AuthGuard } from './guard/auth.guard';
 import { GuestGuard } from './guard/guest.guard';
@@ -22,8 +23,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent , canActivate: [GuestGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'job-list', component: JoblistComponent },
-  { path: 'create-job', component: CreateJobComponent },
+  { path: 'job-list', component: JoblistComponent, canActivate: [AuthGuard] },
+  { path: 'create-job', component: CreateJobComponent, canActivate: [AuthGuard] },
+  { path: 'job/:id', component: JobDetailComponent, canActivate: [AuthGuard] },
 
 ];
 

@@ -11,7 +11,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-details;
+userInfo=[];
+userJobsInfo=[];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -19,16 +20,21 @@ details;
         private router: Router,
         private userService: UserService,
     ) {
+           this.userService.profile().subscribe(
+      (datainfo:any) => {
+        this.userInfo = datainfo.useriwthjobs[0];
+        this.userJobsInfo = datainfo.useriwthjobs;
       
-    }
-  ngOnInit() {
-  	   this.userService.profile().subscribe(
-      (user:any) => {
-        this.details = user
       },
       err => {
         console.error(err)
       } );
+      
+    }
+  ngOnInit() {
+
+
+  
   }
 
 

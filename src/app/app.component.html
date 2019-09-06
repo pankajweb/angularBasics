@@ -17,8 +17,12 @@
         <a class="nav-link" routerLink="/register">Register</a>
       </li>
        <li  class="nav-item">
-        <a class="nav-link" routerLink="/job-list">Jobs</a>
+        <a class="nav-link" *ngIf="auth.isLoggedIn()"  routerLink="/job-list">Jobs</a>
       </li>
+        <li  class="nav-item">
+        <a class="nav-link" *ngIf="auth.isLoggedIn()"  routerLink="/create-job">Create Job</a>
+      </li>
+
       <li *ngIf="auth.isLoggedIn()" class="nav-item">
         <a class="nav-link" routerLink="/profile">{{ auth.getUserDetails()?.data[0].firstname }}</a>
       </li>

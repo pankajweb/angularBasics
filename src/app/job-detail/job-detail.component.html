@@ -1,0 +1,26 @@
+<div class="main_list"><div class="header">
+  <h2>Blog</h2>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="leftcolumn">
+    <div class="main_block_job" >
+            <div class="user_meta"> <img src="http://localhost:8080/user_upload/{{job.userprofile}}"><span>{{job.firstname}}</span></div>
+
+      <h3>{{job.job_title}}</h3>
+      <h5>{{job.createdAt | date}}</h5>
+
+      <div *ngIf="image" class="fakeimg" style="height:200px;"><img src="http://localhost:8080/user_upload/{{job_media}}"></div>
+
+      <p>{{job.job_description}}</p>
+    </div>
+   
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+</div>

@@ -14,9 +14,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const headers_Authorization = {
-  headers: new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("currentUser") })
-};
 
 
 
@@ -31,12 +28,16 @@ export class UserService {
    userRoles = [];
    private customersUrl = 'http://localhost:8080/api/customers';  // U
 
+    baseUri:string = 'http://localhost:8080/api';
+
+
+
+
   constructor(
     private http: HttpClient,
    private router: Router
-
-  ) {}
-
+  ) { 
+}
 
 
 
@@ -52,7 +53,6 @@ export class UserService {
   }
 
   setRole(user) {
-
      let products = [];
     if(localStorage.getItem('products')){
         products = JSON.parse(localStorage.getItem('products'));
@@ -80,9 +80,12 @@ return this.selectedUsers;
 
  //login
   login(username: string, password: string) {
+
+    console.log("dasdadasd"+localStorage.getItem("currentUser"));
+
+
       return this.http.post<any>('http://localhost:8080/api/login', { username, password })
         .pipe(map(user => {
-          console.log(user);
               if (user) {
                   localStorage.setItem('currentUser', user.token);
               }
@@ -94,53 +97,68 @@ return this.selectedUsers;
   return localStorage.getItem("currentUser")
 }
 
+
+private headers_Authorization = { headers: { Authorization: `Bearer ${this.getToken()}` }
+    };
+
+
   //Get user details
 
   getUserDetails() {
-    const token = this.getToken()
-    let userinfo
-    if (token) {
-      userinfo = token.split('.')[1]
-      userinfo = window.atob(userinfo)
-      return JSON.parse(userinfo)
-    } else {
-      return null
+    const token = this.getToken();
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
     }
   }
 
   //check if user LoggedIn
 
    isLoggedIn(): boolean {
-    const user = this.getUserDetails()
-    if (user) {
-      return user.exp > Date.now() / 1000
-    } else {
-      return false
+    const user = this.getUserDetails();
+
+     try{
+       return user.exp > Date.now() / 1000
+    }
+    catch(Error){
+        return false
     }
   }
 
-    //logout
 
-  logout(){
-    window.localStorage.removeItem('currentUser')
-    this.router.navigate(['/login']);
-  }
 
   // profile 
   public userList() {
-    return this.http.get('http://localhost:8080/api/userList',headers_Authorization);
+    return this.http.get('http://localhost:8080/api/userList',this.headers_Authorization);
   }
 
 
 
   // profile 
   public jobList() {
-    return this.http.get('http://localhost:8080/api/job/list',headers_Authorization);
+    return this.http.get('http://localhost:8080/api/job/list',this.headers_Authorization);
+  }
+
+ // profile 
+  public getJob(id) {
+       let url = `${this.baseUri}/job/${id}`;
+    return this.http.get(url,this.headers_Authorization);
   }
 
 
+
   public profile() {
-    return this.http.get('http://localhost:8080/api/user/profile',headers_Authorization);
+        const token = this.getToken();
+
+   return this.http.get(`http://localhost:8080/api/user/profile`, {
+      headers: { Authorization: `Bearer ${this.getToken()}` }
+    })
+ 
+
+
+
   }
 
    getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10) {
@@ -194,7 +212,22 @@ return this.selectedUsers;
         };
     }
 
-    
 
+      //add job
+      createJob(data){
+       return this.http.post('http://localhost:8080/api/job/create', data,this.headers_Authorization);
+      }
+
+    //logout
+
+  logout() {
+
+     this.token = ''
+    window.localStorage.removeItem('currentUser')
+    this.router.navigateByUrl('/')
+
+   console.log("localdatastoarge"+localStorage.getItem("currentUser")); 
+
+  }
   
 }

@@ -39,7 +39,7 @@ UserData.getAllUser = function (result) {
                 else{
                   console.log('users : ', res);  
 
-                 result(null, res);
+                 result(null, JSON.stringify(res));
                 }
             });   
 };

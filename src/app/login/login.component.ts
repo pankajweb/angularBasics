@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    message: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private userService: UserService,
     ) {
+        console.log(localStorage.getItem("currentUser"));
       
     }
 
@@ -48,10 +50,15 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    if(data.code==204){
+                    console.log("error");
+                    this.message= data.success;
+                    } else {
+                    console.log(data);
                     this.router.navigate([this.returnUrl]);
+                    }
                 },
                 error => {
-                   // this.alertService.error(error);
                     this.loading = false;
                 });
     }

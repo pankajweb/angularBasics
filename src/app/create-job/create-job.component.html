@@ -9,7 +9,10 @@
     </div>
 		<div class="form-group">
 			<label for="job_desc">Job Description</label>
-			<textarea formControlName="job_desc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job_desc.errors }"  ></textarea>
+
+
+
+			<textarea  formControlName="job_desc" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job_desc.errors }" [froalaEditor]  ></textarea>
 			<div *ngIf="submitted && f.job_desc.errors" class="invalid-feedback">
 			<div *ngIf="f.job_desc.errors.required">Job Description is required</div>
 			</div>
@@ -24,24 +27,14 @@
     </div>
 
 
-     <div class="form-group">
-        <label for="password">Upload Profile Image</label>
-         <input type="file" formControlName="image" (change)="onFileChange($event)" [ngClass]="{ 'is-invalid': submitted && f.image.errors }"  />
-        
-          <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
-			<div *ngIf="f.image.errors.required">Image is required</div>
-			</div>
-         </div>
-
-
 
 
        <div class="form-group">
         <label for="job_type">Job Type</label>
          <select formControlName="job_type" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.job_type.errors }"  >
             <option value="">Select Job Type</option>
-            <option [value]="fixed">Fixed</option>
-            <option [value]="hourly">Hourly</option>
+            <option value="fixed">Fixed</option>
+            <option value="hourly">Hourly</option>
           </select>
           <div *ngIf="submitted && f.job_type.errors" class="invalid-feedback">
 			<div *ngIf="f.job_type.errors.required">Job Type is required</div>
@@ -49,11 +42,17 @@
 
       </div>
 
+          <div class="form-group">
+        <label for="password">Upload Profile Image</label>
+         <input type="file" (change)="onFileChange($event)" />
+         </div>
+
+
        <div class="form-group">
         <label for="job_desc">country</label>
          <select formControlName="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" >
             <option value="">Select country...</option>
-            <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+            <option *ngFor="let country of countries" value="{{country.name}}">{{country.name}}</option>
           </select>
             <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
 			<div *ngIf="f.country.errors.required">Country is required</div>

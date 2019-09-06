@@ -1,1 +1,100 @@
-<p>profile works!</p>
+<!-- ******HEADER****** -->
+  <header class="header">
+    <div class="container">
+      <div class="teacher-name" style="padding-top:20px;">
+
+        <div class="row" style="margin-top:0px;">
+        <div class="col-md-9">
+          <h2 style="font-size:38px"><strong>{{userInfo.username}} </strong></h2>
+        </div>
+        <div class="col-md-3">
+          <div class="button" style="float:right;">
+            <a href="#" class="btn btn-outline-success btn-sm">Edit Profile</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:20px;">
+        <div class="col-md-3"> <!-- Image -->
+          <a href="#"> <img class="rounded-circle" src="http://localhost:8080/user_upload/{{userInfo.userprofile}}" alt="Kamal" style="width:200px;height:200px"></a>
+        </div>
+
+        <div class="col-md-6"> <!-- Rank & Qualifications -->
+          <h5 style="color:#3AAA64">Associate Professor, <small>Dept. of CSE, Jatiya Kabi Kazi Nazrul Islam University</small></h5>
+          <p>PhD (On study at BUET), M.Sc. in research on ICT(UPC, Spain), M.Sc. in research on ICT(UCL, Belgium).</p>
+          <p>Address: Namapara, Trishal, Mymensingh</p>
+        </div>
+
+        <div class="col-md-3 text-center"> <!-- Phone & Social -->
+          <span class="number" style="font-size:18px">Phone:<strong>+8801732226402</strong></span>
+          <div class="button" style="padding-top:18px">
+            <a href="mailto:ahmkctg@yahoo.com" class="btn btn-outline-success btn-block">Send Email</a>
+          </div>
+          <div class="social-icons" style="padding-top:18px">
+            <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x" style="color:#3AAA64"></i>
+              <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+            </span></a>
+            <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x" style="color:#3AAA64"></i>
+              <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+            </span></a>
+            <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x" style="color:#3AAA64"></i>
+              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span></a>
+            <a href="#">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x" style="color:#3AAA64"></i>
+              <i class="fa fa-slideshare fa-stack-1x fa-inverse"></i>
+            </span></a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <!--End of Header-->
+
+<!-- Main container -->
+  <div class="container">
+
+
+
+<section class="row-section">
+    <div class="container">
+	    <div class="row">
+		    <h2 class="text-center"><span>Job Listing</span>Created By {{userInfo.username}}</h2>
+	    </div>
+	    <div class="col-md-10 offset-md-1 row-block">
+	        <ul id="sortable">
+	            <li *ngFor="let job of userJobsInfo " ><div class="media">
+	            <div class="media-left align-self-center">
+	                <img class="rounded-circle" src="http://localhost:8080/user_upload/{{job.userprofile}}">
+	            </div>
+	            <div class="media-body">
+	                <h4>{{job.job_title}}</h4>
+	               <p [innerHTML] = "job.job_desc"></p>
+	            </div>
+	            <div class="media-right align-self-center">
+	                <a href="#" class="btn btn-default">Edit</a>
+	            </div>
+	        </div></li>
+
+	        </ul>
+	    </div>
+</div>
+</section>
+
+<!-- Section:Biography -->
+
+
+
+
+
+
+</div> <!--End of Container-->

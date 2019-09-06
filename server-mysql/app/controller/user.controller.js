@@ -113,12 +113,19 @@ exports.profile  = function(req,res){
     if(err || !decoded){
     return res.sendStatus(401)
     }else{
-
-    res.send({
-        "code":204,
-        "user":JSON.stringify(decoded)
-          });
-    }
+      let client_id = decoded.data[0].id;
+  db.query("select *,u.id as u_id from users as u left join jobs as j on u.id = j.client_id where u.id  = ?", client_id, function (err, result, fields) {             
+        if(err) {
+          result(err, null);
+          }
+            else{
+              res.send({
+              "code":204,
+              "useriwthjobs":result
+              });
+            }
+          });  
+        }
     })
     } else {
     res.sendStatus(403);

@@ -17,6 +17,8 @@ import { AuthGuard } from './guard/auth.guard';
 import { GuestGuard } from './guard/guest.guard';
 import { JoblistComponent } from './joblist/joblist.component';
 import { CreateJobComponent } from './create-job/create-job.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 @NgModule({
@@ -30,14 +32,17 @@ import { CreateJobComponent } from './create-job/create-job.component';
     LoginComponent,
     ProfileComponent,
     JoblistComponent,
-    CreateJobComponent
+    CreateJobComponent,
+    JobDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+     FroalaViewModule.forRoot()
   ],
   providers: [AuthGuard,GuestGuard],
   bootstrap: [AppComponent]
